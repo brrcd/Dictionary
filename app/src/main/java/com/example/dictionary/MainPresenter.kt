@@ -1,5 +1,6 @@
 package com.example.dictionary
 
+import android.util.Log
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -17,9 +18,9 @@ class MainPresenter(
         disposable +=
             repository
                 .searchWord(word)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe { viewState.renderData(AppState.Loading) }
-                .observeOn(AndroidSchedulers.mainThread())
                 .flatMap {
                     if (it.isEmpty()) {
                         Observable.just(AppState.Error("error"))

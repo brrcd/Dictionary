@@ -1,7 +1,6 @@
 package com.example.dictionary
 
-import com.example.dictionary.model.DataModel
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -37,5 +36,5 @@ object RetrofitImpl {
 
 interface Api {
     @GET("words/search")
-    fun search(@Query("search") wordsToSearch: String): Observable<List<DataModel>>
+    fun search(@Query("search") wordsToSearch: String): Single<List<DataModel>>
 }

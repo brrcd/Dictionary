@@ -19,10 +19,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:imeOptions="actionSearch"
-            android:maxLines="1"
             android:singleLine="true"
             android:hint="@string/enter_word_to_translate"/>
     </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_input_layout"/>
 
     <FrameLayout
         android:id="@+id/loading_layout"
