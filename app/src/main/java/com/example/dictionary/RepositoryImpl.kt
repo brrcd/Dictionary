@@ -1,16 +1,16 @@
 package com.example.dictionary
 
 import io.reactivex.rxjava3.core.Observable
+import javax.inject.Inject
 
-class RepositoryImpl(
+class RepositoryImpl
+@Inject constructor(
+    private val api: Api
 ) : Repository {
-    override fun searchWord(word: String): Observable<List<DataModel>> =
-        Observable.fromSingle(
-            RetrofitImpl.getService()
-                .search(word)
-        )
+    override fun searchWord(word: String): List<DataModel>? =
+        api.search(word).execute().body()
 }
 
 interface Repository {
-    fun searchWord(word: String): Observable<List<DataModel>>
+    fun searchWord(word: String): List<DataModel>?
 }
