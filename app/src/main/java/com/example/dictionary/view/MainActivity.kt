@@ -1,25 +1,23 @@
-package com.example.dictionary
+package com.example.dictionary.view
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dictionary.Adapter
+import com.example.dictionary.AppState
 import com.example.dictionary.databinding.ActivityMainBinding
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
-import javax.inject.Inject
+import com.example.dictionary.viewmodel.MainActivityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
-    @Inject
-    lateinit var viewModel: MainActivityViewModel
+    private val viewModel: MainActivityViewModel by viewModel()
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val adapter by lazy { Adapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        AndroidInjection.inject(this)
         binding.recyclerView.adapter = adapter
         setSearchInputListener()
         viewModel.getLiveData().observe(this, { renderData(it) })

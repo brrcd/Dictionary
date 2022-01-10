@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dictionary.databinding.RvItemBinding
+import com.example.dictionary.model.DataModel
 
 class Adapter : RecyclerView.Adapter<Adapter.CustomViewHolder>() {
 

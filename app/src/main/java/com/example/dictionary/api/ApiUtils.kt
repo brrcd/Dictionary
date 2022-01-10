@@ -1,20 +1,15 @@
-package com.example.dictionary.di
+package com.example.dictionary.api
 
-import com.example.dictionary.Api
-import dagger.Module
-import dagger.Provides
-import dagger.Reusable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-@Module
-class NetworkModule {
+object ApiUtils {
+    const val URL = "https://dictionary.skyeng.ru/api/public/v1/"
 
-    @Provides
-    fun provideOkHttpClient() =
+    private fun provideOkHttpClient() =
         OkHttpClient.Builder()
             .addInterceptor(
                 HttpLoggingInterceptor().apply {
@@ -23,11 +18,9 @@ class NetworkModule {
             )
             .build()
 
-    @Reusable
-    @Provides
-    fun provideApi(): Api =
+    fun getRetrofit(): Api =
         Retrofit.Builder()
-            .baseUrl("https://dictionary.skyeng.ru/api/public/v1/")
+            .baseUrl(URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .client(provideOkHttpClient())

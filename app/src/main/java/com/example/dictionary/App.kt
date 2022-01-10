@@ -1,13 +1,16 @@
 package com.example.dictionary
 
-import com.example.dictionary.di.DaggerDictionaryAppComponent
-import dagger.android.AndroidInjector
-import dagger.android.support.DaggerApplication
+import android.app.Application
+import com.example.dictionary.di.application
+import com.example.dictionary.di.mainScreen
+import org.koin.core.context.startKoin
 
-class App: DaggerApplication() {
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
-        DaggerDictionaryAppComponent
-            .builder()
-            .withContext(applicationContext)
-            .build()
+class App: Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+        startKoin{
+            modules(listOf(application, mainScreen))
+        }
+    }
 }

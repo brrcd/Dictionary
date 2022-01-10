@@ -1,14 +1,14 @@
-package com.example.dictionary
+package com.example.dictionary.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.dictionary.AppState
+import com.example.dictionary.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class MainActivityViewModel
-@Inject constructor(private val repository: Repository) : ViewModel() {
+class MainActivityViewModel(private val repository: Repository) : ViewModel() {
     private val liveData: MutableLiveData<AppState> = MutableLiveData()
 
     fun getLiveData() = liveData
