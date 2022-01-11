@@ -1,5 +1,6 @@
 package com.example.dictionary.api
 
+import com.example.dictionary.URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -7,7 +8,6 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiUtils {
-    const val URL = "https://dictionary.skyeng.ru/api/public/v1/"
 
     private fun provideOkHttpClient() =
         OkHttpClient.Builder()

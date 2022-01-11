@@ -10,5 +10,5 @@ val application = module {
 }
 
 val mainScreen = module {
-    factory { MainActivityViewModel(get()) }
+    factory { MainActivityViewModel( repository = get()) }
 }
