@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.recyclerView.adapter = adapter
         setSearchInputListener()
-        viewModel.getLiveData().observe(this, { renderData(it) })
     }
 
     private fun renderData(appState: AppState) = with(binding)
@@ -43,9 +42,9 @@ class MainActivity : AppCompatActivity() {
         textInputEditText.setOnEditorActionListener { _, action, _ ->
             when (action) {
                 EditorInfo.IME_ACTION_SEARCH -> {
-                    viewModel.searchWords(
+                    viewModel.searchWord(
                         textInputEditText.text.toString()
-                    )
+                    ).observe(this@MainActivity, { renderData(it) })
                     true
                 }
                 else -> {
