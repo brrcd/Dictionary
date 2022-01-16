@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dictionary</string>
+    <string name="enter_word_to_translate">Enter word to translate</string>
 </resources>
