@@ -3,10 +3,10 @@ package com.example.dictionary
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dictionary.databinding.RvItemBinding
+import com.example.dictionary.databinding.HistoryRvItemBinding
 import com.example.dictionary.model.DataModel
 
-class Adapter : RecyclerView.Adapter<Adapter.CustomViewHolder>() {
+class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.CustomViewHolder>() {
 
     private var data: List<DataModel> = listOf()
 
@@ -15,18 +15,18 @@ class Adapter : RecyclerView.Adapter<Adapter.CustomViewHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class CustomViewHolder(private val binding: RvItemBinding) :
+    inner class CustomViewHolder(private val binding: HistoryRvItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: DataModel) = with(binding) {
-            word.text = data.text
-            word.text = data.meanings[0].translation?.translation
-        }
+            fun bind(data: DataModel) = with(binding){
+                historyWord.text = data.text
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder =
         CustomViewHolder(
-            RvItemBinding
-                .inflate(LayoutInflater.from(parent.context), parent, false)
+            HistoryRvItemBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
         )
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
