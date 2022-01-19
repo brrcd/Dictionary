@@ -21,11 +21,12 @@ val application = module {
             get(),
             HistoryDatabase::class.java,
             DB_NAME
-        ).build()
+        ).fallbackToDestructiveMigration()
+            .build()
     }
     single { get<HistoryDatabase>().historyDao() }
 
-    single<LocalRepository> { LocalRepositoryImpl(get()) }
+    single<LocalRepository> { LocalRepositoryImpl(database = get()) }
     single<RemoteRepository> { RemoteRepositoryImpl() }
     single<MainRepository> { MainRepositoryImpl(localRepository = get(), remoteRepository = get()) }
 }
