@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.example.dictionary.AppState
 import com.example.dictionary.LIST_IS_EMPTY
-import com.example.dictionary.repository.MainRepository
+import com.example.repository.MainRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn

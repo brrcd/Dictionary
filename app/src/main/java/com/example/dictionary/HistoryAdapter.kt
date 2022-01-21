@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dictionary.databinding.HistoryRvItemBinding
-import com.example.dictionary.model.DataModel
+import com.example.model.DataModel
 
 class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.CustomViewHolder>() {
 
