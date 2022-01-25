@@ -23,6 +23,7 @@ object Deps {
     const val ROOM_RUNTIME = Name.roomRuntime + Version.room
     const val ROOM_COMPILER = Name.roomCompiler + Version.room
     const val ROOM_KTX = Name.roomKtx + Version.room
+    const val SPLASH_SCREEN = Name.splashScreen + Version.splashScreen
 
     object Name {
         const val core = "androidx.core:core-ktx"
@@ -48,6 +49,7 @@ object Deps {
         const val roomRuntime = "androidx.room:room-runtime"
         const val roomCompiler = "androidx.room:room-compiler"
         const val roomKtx = "androidx.room:room-ktx"
+        const val splashScreen = "androidx.core:core-splashscreen"
     }
 
     object Version {
@@ -65,5 +67,6 @@ object Deps {
         const val koin = ":3.1.2"
         const val coroutines = ":1.5.2"
         const val room = ":2.4.1"
+        const val splashScreen = ":1.0.0-beta01"
     }
 }

@@ -1,13 +1,17 @@
 package com.example.dictionary.view
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.RotateAnimation
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.dictionary.*
 import com.example.dictionary.databinding.ActivityMainBinding
 import com.example.dictionary.viewmodel.MainActivityViewModel
@@ -30,7 +34,12 @@ class MainActivity : AppCompatActivity(), KoinScopeComponent {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val splashScreen = installSplashScreen()
         setContentView(binding.root)
+        splashScreen.setOnExitAnimationListener {
+            val animation = it.iconView.animate().rotation(360f).setDuration(2000)
+            animation.withEndAction { it.remove() }
+        }
         binding.recyclerView.adapter = adapter
         setSearchInputListener()
     }
