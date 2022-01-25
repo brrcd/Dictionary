@@ -12,10 +12,14 @@ import com.example.dictionary.AppState
 import com.example.dictionary.R
 import com.example.dictionary.databinding.ActivityMainBinding
 import com.example.dictionary.viewmodel.MainActivityViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.component.KoinScopeComponent
+import org.koin.core.component.getOrCreateScope
+import org.koin.core.component.inject
+import org.koin.core.scope.Scope
 
-class MainActivity : AppCompatActivity() {
-    private val viewModel: MainActivityViewModel by viewModel()
+class MainActivity : AppCompatActivity(), KoinScopeComponent {
+    override val scope: Scope by getOrCreateScope()
+    private val viewModel: MainActivityViewModel by inject()
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val adapter by lazy { Adapter() }
 
@@ -24,6 +28,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.recyclerView.adapter = adapter
         setSearchInputListener()
+    }
+
+    override fun onDestroy() {
+        scope.close()
+        super.onDestroy()
     }
 
     private fun renderData(appState: AppState) = with(binding)
