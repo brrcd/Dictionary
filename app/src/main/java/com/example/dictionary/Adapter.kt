@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dictionary.databinding.RvItemBinding
 import com.example.model.DataModel
 
-class Adapter : RecyclerView.Adapter<Adapter.CustomViewHolder>() {
+class Adapter(private val delegate: (item: DataModel) -> Unit) : RecyclerView.Adapter<Adapter.CustomViewHolder>() {
 
     private var data: List<DataModel> = listOf()
 
@@ -17,9 +17,12 @@ class Adapter : RecyclerView.Adapter<Adapter.CustomViewHolder>() {
 
     inner class CustomViewHolder(private val binding: RvItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: DataModel) = with(binding) {
+        fun bind(data: DataModel, delegateFunction: (item: DataModel) -> Unit) = with(binding) {
             word.text = data.text
             word.text = data.meanings[0].translation?.translation
+            itemView.setOnClickListener {
+                delegateFunction.invoke(data)
+            }
         }
     }
 
@@ -30,7 +33,7 @@ class Adapter : RecyclerView.Adapter<Adapter.CustomViewHolder>() {
         )
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.bind(data[position], delegate)
     }
 
     override fun getItemCount(): Int = data.size

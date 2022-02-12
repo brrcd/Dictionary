@@ -1,0 +1,7 @@
+<resources >
+    <style name="Theme.MySplashScreen" parent="Theme.SplashScreen">
+        <item name="postSplashScreenTheme">@style/Theme.Dictionary</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_background</item>
+        <item name="android:background">@android:color/darker_gray</item>
+    </style>
+</resources>

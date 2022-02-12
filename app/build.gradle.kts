@@ -63,4 +63,6 @@ dependencies {
     implementation(Deps.COROUTINES_ANDROID)
     // retrofit
     implementation(Deps.RETROFIT_CORE)
+    // SplashScreen
+    implementation(Deps.SPLASH_SCREEN)
 }
